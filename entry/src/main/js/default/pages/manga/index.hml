@@ -1,0 +1,29 @@
+<div class="container">
+    <tabs onchange="changeTabactive">
+        <tab-bar>
+            <text class="header">详细</text>
+            <text class="header">列表</text>
+        </tab-bar>
+        <tab-content>
+            <div class="page">
+                <image src="{{cover}}"></image>
+                <text class="text">{{title}}</text>
+                <text class="text">{{authors}}</text>
+                <text class="text">{{tags}}</text>
+                <text class="text">{{newest}}</text>
+                <text class="text">{{renewal_time}}</text>
+                <text class="text">{{classic_lines}}</text>
+                <button class="button" onclick="btnFollow">{{btnContent}}</button>
+            </div>
+                <div class="text">
+                    <list class="list" onscrollbottom="loadMore">
+                        <list-item for="{{pageList}}" class="listItem">
+                            <div data-id="{{$item.id}}" onclick="goToPage">
+                                <text class="title">{{$item.short_title}}-{{$item.title}}</text>
+                            </div>
+                        </list-item>
+                    </list>
+                </div>
+        </tab-content>
+    </tabs>
+</div>

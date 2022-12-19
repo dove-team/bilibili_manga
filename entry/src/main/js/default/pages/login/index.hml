@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="nav">
+        <image style="width: 245px;" src="common/images/ic_22.png" />
+        <image style="width: 123px;" src="common/ic_bili_logo.png" />
+        <image style="width: 230px;" src="common/images/ic_33.png" />
+    </div>
+    <div class="input_item">
+        <text class="input_title">地区</text>
+        <picker focusable="true" type="text" value="{{countryCode}}" range="{{countryData}}"
+              onchange="setCountry" class="input_select"></picker>
+    </div>
+    <div class="input_item" style="margin-top: 68px;">
+        <text class="input_title">{{title}}</text>
+        <input class="input_box" data-type="account" onchange="setValue" value="{{account}}" type="number" maxlength="11" placeholder="请输入手机号"></input>
+    </div>
+    <div class="input_item">
+        <text class="input_title">验证码</text>
+        <input class="input_box code" value="{{pwd}}" data-type="pwd" onchange="setValue" type="number" placeholder="请输入验证码"></input>
+        <text class="hylink" style="margin-left:12px" onclick="smsCode">{{smsReSend}}</text>
+    </div>
+    <button class="button" onclick="login" style="margin-top: 12px;">登录</button>
+</div>

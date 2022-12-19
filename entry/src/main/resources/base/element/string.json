@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "哔哩哔哩漫画"
+    },
+    {
+      "name": "mainability_description",
+      "value": "哔哩哔哩漫画鸿蒙版"
+    },
+    {
+      "name": "internet_reason",
+      "value": "联网以获取数据"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+<div class="container">
+  <refresh refreshing="{{fresh}}" onrefresh="refresh">
+    <web src="{{url}}" id="web" onpagestart="pageStart" onpagefinish="pageFinish" on:error="pageError"></web>
+  </refresh>
+</div>

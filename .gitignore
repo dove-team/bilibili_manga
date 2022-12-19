@@ -1,0 +1,16 @@
+.cxx
+*.iml
+/.idea
+.gradle
+**/build
+/.hvigor
+.DS_Store
+/captures
+/node_modules
+/entry/.preview
+/local.properties
+/package-lock.json
+.externalNativeBuild
+/build-profile.json5
+/entry/package-lock.json
+build.gradle

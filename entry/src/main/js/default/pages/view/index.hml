@@ -1,0 +1,24 @@
+<div class="container">
+    <list class="list">
+        <list-item for="{{imgs}}" class="listItem">
+            <image src="{{$item.img}}" />
+        </list-item>
+    </list>
+    <dialog id="eventDialog" style="margin-bottom: 40%;">
+        <div class="dialog-div">
+            <div class="inner-txt">
+                <text class="text">购买章节</text>
+            </div>
+            <select class="type_box" onchange="selectType">
+                <option value="1" selected="true">漫币购买</option>
+                <option value="2">漫读券购买</option>
+                <option value="3">通用券购买</option>
+                <option value="4">限免卡购买</option>
+            </select>
+            <text class="text">{{content}}</text>
+            <div class="inner-btn">
+                <button type="text" value="确认" onclick="buy"></button>
+            </div>
+        </div>
+    </dialog>
+</div>

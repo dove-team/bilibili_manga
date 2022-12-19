@@ -1,0 +1,176 @@
+<div class="container">
+    <tabs onchange="changeHomeTabactive">
+    <tab-content>
+        <div class="item-container" for="homes.list">
+            <div class="page" if="{{$item.title=='首页'?true:false}}">
+                <tabs onchange="changeTabactive">
+                    <tab-bar>
+                        <text class="header">推荐</text>
+                        <text class="header">排行</text>
+                        <text class="header">新作</text>
+                        <text class="header">分区</text>
+                    </tab-bar>
+                    <tab-content>
+                        <div class="text">
+                                <list class="list" data-type="recommand" onscrollbottom="loadMore">
+                                    <list-item for="{{recommandData}}" class="listItem">
+                                        <div data-id="{{$item.comic_id}}" onclick="goToPage">
+                                            <image src="{{$item.vertical_cover}}@600w.jpg" />
+                                            <text class="title">{{$item.title}}</text>
+                                        </div>
+                                    </list-item>
+                                </list>
+                        </div>
+                        <div class="text">
+                                <list class="list">
+                                    <list-item for="{{rankData}}" class="listItem">
+                                        <div data-id="{{$item.comic_id}}" onclick="goToPage">
+                                            <image src="{{$item.vertical_cover}}@600w.jpg" />
+                                            <text class="title">{{$item.title}}</text>
+                                        </div>
+                                    </list-item>
+                                </list>
+                        </div>
+                        <div class="text">
+                                <list class="list" data-type="new" onscrollbottom="loadMore">
+                                    <list-item for="{{newData}}" class="listItem">
+                                        <div data-id="{{$item.season_id}}" onclick="goToPage">
+                                            <image src="{{$item.vertical_cover}}@600w.jpg" />
+                                            <text class="title">{{$item.title}}</text>
+                                        </div>
+                                    </list-item>
+                                </list>
+                        </div>
+                        <div class="page">
+                            <div class="out-container">
+                                <text class="title">地区</text>
+                                <picker focusable="true" type="text" value="{{areasPos}}" range="{{areasData}}"
+                                        onchange="selectType" data-type="area"></picker>
+                            </div>
+                            <div class="out-container">
+                                <text class="title">是否付费</text>
+                                <picker focusable="true" type="text" value="{{pricesPos}}" range="{{pricesData}}"
+                                        onchange="selectType" data-type="price"></picker>
+                            </div>
+                            <div class="out-container">
+                                <text class="title">状态</text>
+                                <picker focusable="true" type="text" value="{{statusPos}}" range="{{statusData}}"
+                                        onchange="selectType" data-type="status"></picker>
+                            </div>
+                            <div class="out-container">
+                                <text class="title">风格</text>
+                                <picker focusable="true" type="text" value="{{stylesPos}}" range="{{stylesData}}"
+                                        onchange="selectType" data-type="style"></picker>
+                            </div>
+                            <div class="out-container">
+                                <text class="title">排序</text>
+                                <picker focusable="true" type="text" value="{{ordersPos}}" range="{{ordersData}}"
+                                        onchange="selectType" data-type="order"></picker>
+                            </div>
+                            <list class="list" data-type="type" onscrollbottom="loadMore">
+                                    <list-item for="{{typeListData}}" class="listItem">
+                                        <div data-id="{{$item.season_id}}" onclick="goToPage">
+                                            <image src="{{$item.vertical_cover}}@600w.jpg" />
+                                            <text class="title">{{$item.title}}</text>
+                                        </div>
+                                    </list-item>
+                                </list>
+                        </div>
+                    </tab-content>
+                </tabs>
+            </div>
+            <div class="page" if="{{$item.title=='搜索'?true:false}}">
+                <search hint="请输入关键字" searchbutton="搜索" onsubmit="queryManga" />
+                <list class="list" style="margin-top: 12px;" data-type="search" onscrollbottom="loadMore">
+                    <list-item for="{{searchData}}" class="listItem">
+                        <div data-id="{{$item.id}}" onclick="goToPage">
+                            <image class="img" src="{{$item.vertical_cover}}@600w.jpg" />
+                            <text class="title">{{$item.title}}</text>
+                        </div>
+                    </list-item>
+                </list>
+            </div>
+            <div class="page" if="{{$item.title=='书架'?true:false}}">
+                <text if="{{userId==''}}" class="empty_content">
+                    需要登录后获取数据哦~
+                </text>
+                <div if="{{userId!=''}}">
+                    <tabs onchange="changeBookTabactive">
+                        <tab-bar>
+                            <text class="header">我的追漫</text>
+                            <text class="header">历史记录</text>
+                            <text class="header">已购漫画</text>
+                        </tab-bar>
+                        <tab-content>
+                            <div class="page">
+                                <div class="out-container">
+                                    <text class="title">排序</text>
+                                    <picker focusable="true" type="text" value="{{orderTag}}" range="{{orders}}"
+                                            onchange="selectType" data-type="f_order"></picker>
+                                </div>
+                                <list class="list" data-type="focus" onscrollbottom="loadMore">
+                                    <list-item for="{{focusData}}" class="listItem">
+                                        <div data-id="{{$item.comic_id}}" onclick="goToPage">
+                                            <image src="{{$item.vcover}}@600w.jpg" />
+                                            <text class="title">{{$item.title}}</text>
+                                        </div>
+                                    </list-item>
+                                </list>
+                            </div>
+                            <div class="text">
+                                <list class="list" data-type="history" onscrollbottom="loadMore">
+                                    <list-item for="{{historyData}}" class="listItem">
+                                        <div data-id="{{$item.comic_id}}" onclick="goToPage">
+                                            <image src="{{$item.vcover}}@600w.jpg" />
+                                            <text class="title">{{$item.title}}</text>
+                                        </div>
+                                    </list-item>
+                                </list>
+                            </div>
+                            <div class="text">
+                                <list class="list" data-type="buy" onscrollbottom="loadMore">
+                                    <list-item for="{{buyData}}" class="listItem">
+                                        <div data-id="{{$item.comic_id}}" onclick="goToPage">
+                                            <image src="{{$item.vcover}}@600w.jpg" />
+                                            <text class="title">{{$item.comic_title}}</text>
+                                        </div>
+                                    </list-item>
+                                </list>
+                            </div>
+                        </tab-content>
+                    </tabs>
+                </div>
+            </div>
+            <div class="page" if="{{$item.title=='我的'?true:false}}">
+                <div class="user_info">
+                    <image onclick="clickCover" class="user_cover" src="{{userCover}}"></image>
+                    <text onclick="clickCover" class="header" style="margin-top: 12px;">{{userName}}</text>
+                </div>
+                <text onclick="setting" class="out-container header">设置</text>
+                <div if="{{userId!=''}}">
+                    <text onclick="logoutDialog" class="out-container header">退出登录</text>
+                </div>
+                <dialog id="settingDialog" style="margin-bottom: 50%;">
+                    <div class="dialog-div">
+                        <div class="inner-txt">
+                            <text class="txt">注意</text>
+                        </div>
+                        <text class="text">确定退出登录？</text>
+                        <div class="inner-btn">
+                            <button type="text" value="确定" onclick="logout"></button>
+                            <button type="text" value="取消" onclick="hideDialog"></button>
+                        </div>
+                    </div>
+                </dialog>
+            </div>
+        </div>
+    </tab-content>
+    <tab-bar class="tab_bar" mode="scrollable">
+        <div class="tab_item" for="homes.list">
+            <image src="{{$item.icon}}"></image>
+            <text class="text">{{$item.title}}</text>
+            <div class="underline"></div>
+        </div>
+    </tab-bar>
+</tabs>
+</div>
